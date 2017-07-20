@@ -20,7 +20,11 @@ class DateFilter extends React.Component {
     this.setState({
       date
     });
-    this.props.onChange(object);
+    if (date) {
+      this.props.onChange(object);
+    } else {
+      this.props.onReset(this.props.fieldKey)
+    }
   }
 
   render() {

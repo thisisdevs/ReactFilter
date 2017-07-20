@@ -23,7 +23,11 @@ class DateRangeFilter extends React.Component {
       startDate,
       endDate,
     });
-    this.props.onChange(object);
+    if (startDate && endDate) {
+      this.props.onChange(object);
+    } else {
+      this.props.onReset(this.props.fieldKey)
+    }
   }
   render() {
     return (

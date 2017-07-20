@@ -19,7 +19,11 @@ class MultiSelectFilter extends React.Component {
     this.setState({
       val
     });
-    this.props.onChange(object);
+    if (val.length !== 0) {
+      this.props.onChange(object);
+    } else {
+      this.props.onReset(this.props.fieldKey);
+    }
   }
 
   render() {

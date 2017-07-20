@@ -15,7 +15,6 @@ class FilterBar extends React.Component {
   }
 
   handleUpdate(object) {
-    console.log('updating');
     let filterStatus = this.state.filterStatus;
     let currentFilterArray = filterStatus.filter(filter => filter.fieldKey === object.fieldKey);
     let currentFilterObject;
@@ -31,6 +30,17 @@ class FilterBar extends React.Component {
     }
   }
 
+  resetStatus(fieldKey) {
+    let filterStatus = this.state.filterStatus;
+    let currentFilterArray = filterStatus.filter(filter => filter.fieldKey === fieldKey);
+    let index = filterStatus.indexOf(currentFilterArray[0]);
+    if (index > -1) {
+      filterStatus.splice(index, 1);
+    }
+    this.setState({ filterStatus });
+
+  }
+
   handleApply = (e) => {
     console.log(this.state.filterStatus);
     this.props.onUpdateFilter(this.state.filterStatus)
@@ -43,6 +53,7 @@ class FilterBar extends React.Component {
         label={data.label}
         fieldKey={data.fieldKey}
         onChange={this.handleUpdate.bind(this)}
+        onReset={this.resetStatus.bind(this)}
       />
     );
   }
@@ -55,6 +66,7 @@ class FilterBar extends React.Component {
         label={data.label}
         fieldKey={data.fieldKey}
         onChange={this.handleUpdate.bind(this)}
+        onReset={this.resetStatus.bind(this)}
       />
     );
   }
@@ -67,6 +79,7 @@ class FilterBar extends React.Component {
         label={data.label}
         fieldKey={data.fieldKey}
         onChange={this.handleUpdate.bind(this)}
+        onReset={this.resetStatus.bind(this)}
       />
     );
   }
@@ -78,6 +91,7 @@ class FilterBar extends React.Component {
           label={data.label}
           fieldKey={data.fieldKey}
           onChange={this.handleUpdate.bind(this)}
+          onReset={this.resetStatus.bind(this)}
         />
     );
   }
@@ -89,6 +103,7 @@ class FilterBar extends React.Component {
         label={data.label}
         fieldKey={data.fieldKey}
         onChange={this.handleUpdate.bind(this)}
+        onReset={this.resetStatus.bind(this)}
       />
     );
   }

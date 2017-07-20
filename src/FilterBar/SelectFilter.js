@@ -19,7 +19,11 @@ class SelectFilter extends React.Component {
     this.setState({
       val
     });
-    this.props.onChange(object);
+    if(val) {
+      this.props.onChange(object);
+    } else {
+      this.props.onReset(this.props.fieldKey);
+    }
   }
 
   render() {
